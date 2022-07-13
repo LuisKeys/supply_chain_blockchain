@@ -11,7 +11,7 @@ import "../coffeeaccesscontrol/RetailerRole.sol";
 contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, RetailerRole {
 
   // Define 'owner'
-  address owner;
+  //address owner;
 
   // Define a variable called 'upc' for Universal Product Code (UPC)
   uint  upc;
@@ -71,10 +71,12 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
   event Purchased(uint upc);
 
   // Define a modifer that checks to see if msg.sender == owner of the contract
-  modifier onlyOwner() {
+  /*
+  modifier onlyOwner() override {
     require(msg.sender == owner);
     _;
   }
+  */
 
   // Define a modifer that verifies the Caller
   modifier verifyCaller (address _address) {
@@ -93,7 +95,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
     _;
     uint _price = items[_upc].productPrice;
     uint amountToReturn = msg.value - _price;
-    items[_upc].consumerID.transfer(amountToReturn);
+    payable(items[_upc].consumerID).transfer(amountToReturn);
   }
 
   // Define a modifier that checks if an item.state of a upc is Harvested
@@ -147,21 +149,21 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
   // In the constructor set 'owner' to the address that instantiated the contract
   // and set 'sku' to 1
   // and set 'upc' to 1
-  constructor() public payable {
-    owner = msg.sender;
+  constructor() Ownable() public {
+    //owner = msg.sender;
     sku = 1;
     upc = 1;
   }
 
   // Define a function 'kill' if required
   function kill() public {
-    if (msg.sender == owner) {
-      selfdestruct(owner);
+    if (msg.sender == owner()) {
+      selfdestruct(payable(owner()));
     }
   }
 
   // Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
-  function harvestItem(uint _upc, address _originFarmerID, string _originFarmName, string _originFarmInformation, string  _originFarmLatitude, string  _originFarmLongitude, string  _productNotes) public 
+  function harvestItem(uint _upc, address _originFarmerID, string memory _originFarmName, string memory _originFarmInformation, string  memory _originFarmLatitude, string  memory _originFarmLongitude, string  memory _productNotes) public 
   // Access control > farmers
   onlyFarmer()
   {
@@ -245,7 +247,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
 
     // Transfer money to farmer
     address  farmer = address(uint160(items[_upc].originFarmerID));
-    farmer.transfer(items[_upc].productPrice);
+    payable(farmer).transfer(items[_upc].productPrice);
 
     // emit the appropriate event
     emit Sold(_upc);
@@ -309,10 +311,10 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
   uint    itemUPC,
   address ownerID,
   address originFarmerID,
-  string  originFarmName,
-  string  originFarmInformation,
-  string  originFarmLatitude,
-  string  originFarmLongitude
+  string  memory originFarmName,
+  string  memory originFarmInformation,
+  string  memory originFarmLatitude,
+  string  memory originFarmLongitude
   ) 
   {
   // Assign values to the 8 parameters
@@ -346,7 +348,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
   uint    itemSKU,
   uint    itemUPC,
   uint    productID,
-  string  productNotes,
+  string  memory productNotes,
   uint    productPrice,
   uint    itemState,
   address distributorID,
