@@ -95,7 +95,8 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
     _;
     uint _price = items[_upc].productPrice;
     uint amountToReturn = msg.value - _price;
-    payable(items[_upc].consumerID).transfer(amountToReturn);
+    address payable consumer = address(uint160(items[_upc].consumerID));
+    consumer.transfer(amountToReturn);
   }
 
   // Define a modifier that checks if an item.state of a upc is Harvested
@@ -158,7 +159,8 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
   // Define a function 'kill' if required
   function kill() public {
     if (msg.sender == owner()) {
-      selfdestruct(payable(owner()));
+      address payable ownerInt = address(uint160(owner()));
+      selfdestruct(ownerInt);
     }
   }
 
@@ -246,8 +248,8 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
     items[_upc].itemState = State.Sold;
 
     // Transfer money to farmer
-    address  farmer = address(uint160(items[_upc].originFarmerID));
-    payable(farmer).transfer(items[_upc].productPrice);
+    address payable farmer = address(uint160(items[_upc].originFarmerID));
+    farmer.transfer(items[_upc].productPrice);
 
     // emit the appropriate event
     emit Sold(_upc);
