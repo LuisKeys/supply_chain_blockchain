@@ -70,14 +70,6 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
   event Received(uint upc);
   event Purchased(uint upc);
 
-  // Define a modifer that checks to see if msg.sender == owner of the contract
-  /*
-  modifier onlyOwner() override {
-    require(msg.sender == owner);
-    _;
-  }
-  */
-
   // Define a modifer that verifies the Caller
   modifier verifyCaller (address _address) {
     require(msg.sender == _address, "Caller not verified"); 
@@ -150,7 +142,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, Ownable, Reta
   // In the constructor set 'owner' to the address that instantiated the contract
   // and set 'sku' to 1
   // and set 'upc' to 1
-  constructor() Ownable() public {
+  constructor() Ownable() FarmerRole() public {
     //owner = msg.sender;
     sku = 1;
     upc = 1;
