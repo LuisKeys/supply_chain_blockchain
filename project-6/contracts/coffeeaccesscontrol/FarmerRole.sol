@@ -1,17 +1,17 @@
-pragma solidity ^0.4.24;
+pragma solidity >=0.4.24;
 
 // Import the library 'Roles'
 import "./Roles.sol";
 
 // Define a contract 'FarmerRole' to manage this role - add, remove, check
-contract FarmerRole {
-  using Roles for Roles.Role;
+contract FarmerRole {  
 
   // Define 2 events, one for Adding, and other for Removing
   event FarmerAdded(address indexed account);
   event FarmerRemoved(address indexed account);
 
   // Define a struct 'farmers' by inheriting from 'Roles' library, struct Role
+  using Roles for Roles.Role;
   Roles.Role private farmers;
 
   // In the constructor make the address that deploys this contract the 1st farmer
@@ -42,13 +42,19 @@ contract FarmerRole {
 
   // Define an internal function '_addFarmer' to add this role, called by 'addFarmer'
   function _addFarmer(address account) internal {
+    //Add a farmer account to the farmers mapping
     farmers.add(account);
+    
+    //Emit farmer added event
     emit FarmerAdded(account);
   }
 
   // Define an internal function '_removeFarmer' to remove this role, called by 'removeFarmer'
   function _removeFarmer(address account) internal {
+    //Remove a farmer account from the farmers mapping
     farmers.remove(account);
+
+    //Emit farmer deleted event
     emit FarmerRemoved(account);
   }
 }
