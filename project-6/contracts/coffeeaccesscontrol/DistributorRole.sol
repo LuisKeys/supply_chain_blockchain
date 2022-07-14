@@ -27,8 +27,7 @@ contract DistributorRole {
 
   // Define a function 'isDistributor' to check this role
   function isDistributor(address account) public view returns (bool) {
-    //return distributors.has(account);
-    return true;
+    return distributors.has(account);    
   }
 
   // Define a function 'addDistributor' that adds this role

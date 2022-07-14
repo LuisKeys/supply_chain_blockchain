@@ -27,8 +27,7 @@ contract FarmerRole {
 
   // Define a function 'isFarmer' to check this role
   function isFarmer(address account) public view returns (bool) {
-    //return farmers.has(account);
-    return true;
+    return farmers.has(account);    
   }
 
   // Define a function 'addFarmer' that adds this role
