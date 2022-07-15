@@ -1,5 +1,53 @@
 # Supply chain & data auditing
 
+From account:
+0xbDc52D0146298216fB1E55c8f20f4f01d78A4FFa
+
+# Contracts addresses:
+
+FarmerRole: 0x40ce5f5989955ec582ea772b05da97b984c21464
+https://rinkeby.etherscan.io/address/0xbff47008d577153490326bfd21ab474db247688f
+
+DistributorRole: 0x81891c37ccb4a3d1fda9ef7027f421eb0f1bf1c0
+https://rinkeby.etherscan.io/address/0x81891c37ccb4a3d1fda9ef7027f421eb0f1bf1c0
+
+RetailerRole: 0x41ff89ad17193ececbfacff4b862e122f0f07903
+https://rinkeby.etherscan.io/address/0x41ff89ad17193ececbfacff4b862e122f0f07903
+
+ConsumerRole: 0x059e01a682a94a2d2be72d77717dfe8a1362bf38
+https://rinkeby.etherscan.io/address/0x059e01a682a94a2d2be72d77717dfe8a1362bf38
+
+SupplyChain:0xbff47008d577153490326bfd21ab474db247688f
+https://rinkeby.etherscan.io/address/0xbff47008d577153490326bfd21ab474db247688f
+
+# Migration messages:
+Running migration: 1_initial_migration.js
+  Deploying Migrations...
+  ... 0x6de31faffbd5960429b86bc033e400aa4a825b798a21613c90f48c0c10a9afa2
+  Migrations: 0x20518880310bc59039f8a890d3a14c8d6be66cc5
+Saving successful migration to network...
+  ... 0xae3a339cc9863a224880de58eff540c9bf9bed5ea643c9d5b1130538f1900762
+Saving artifacts...
+Running migration: 2_deploy_contracts.js
+  Deploying FarmerRole...
+  ... 0xbb95b0c584e73c2d1e4dd7c1d16a57233ffa159d83c4f0c2a63a36dc4c8f265a
+  FarmerRole: 0x40ce5f5989955ec582ea772b05da97b984c21464
+  Deploying DistributorRole...
+  ... 0xfaa1ddf46008c31987f22cbc009c9322a91043002421237ff0327eb4e04f685a
+  DistributorRole: 0x81891c37ccb4a3d1fda9ef7027f421eb0f1bf1c0
+  Deploying RetailerRole...
+  ... 0x77dc00cbe184d47ee2dd592cf103fdd30bf55784c44ed93e7f5da3c113395d14
+  RetailerRole: 0x41ff89ad17193ececbfacff4b862e122f0f07903
+  Deploying ConsumerRole...
+  ... 0xaafd1d171791014153de5261566f73822f94a965f28074a6b3d49a085ca8ad22
+  ConsumerRole: 0x059e01a682a94a2d2be72d77717dfe8a1362bf38
+  Deploying SupplyChain...
+  ... 0xf0cbdc0a26d1ca11caef05ca04ed314f1ee3062acce786b7ac80f46ea311e38e
+  SupplyChain: 0xbff47008d577153490326bfd21ab474db247688f
+Saving successful migration to network...
+  ... 0x092db2dd65fb986d3f2dd102ddcc46e18e6f6ebff10b6d676c6bc4ff988de74f
+Saving artifacts...
+
 Frameworks and libraries Versions:
 Node: 12.0.0
 
